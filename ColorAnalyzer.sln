@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorAnalyzer", "ColorAnalyzer\ColorAnalyzer.csproj", "{61F2F22E-35F7-4B9A-B9FC-4AAC8D251B3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61F2F22E-35F7-4B9A-B9FC-4AAC8D251B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F2F22E-35F7-4B9A-B9FC-4AAC8D251B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F2F22E-35F7-4B9A-B9FC-4AAC8D251B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F2F22E-35F7-4B9A-B9FC-4AAC8D251B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1ED2A955-34BF-4D05-9CD3-237B6B348B3E}
+	EndGlobalSection
+EndGlobal

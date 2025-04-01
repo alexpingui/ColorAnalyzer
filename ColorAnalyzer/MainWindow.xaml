@@ -1,0 +1,28 @@
+﻿<Window x:Class="ColorAnalyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorAnalyzer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Загрузить">
+                <Grid Background="#FFE5E5E5">
+                    <Button Content="Загрузить" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="23" Width="158" Click="UploadImage_Click"/>
+                    <Image x:Name="rawImage" Stretch="Uniform" HorizontalAlignment="Center" Height="500" Margin="0,0,0,0" VerticalAlignment="Center" Width="800"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Разметка">
+                <Grid Background="#FFE5E5E5">
+                    <Label Content="ДЕРЬМО" FontSize="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Результат">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
