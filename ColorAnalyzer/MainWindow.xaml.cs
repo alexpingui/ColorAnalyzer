@@ -16,6 +16,7 @@ using Emgu.CV.Features2D;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using Microsoft.Win32;
+using System.Drawing.Imaging;
 
 namespace ColorAnalyzer;
 
@@ -24,6 +25,7 @@ namespace ColorAnalyzer;
 /// </summary>
 public partial class MainWindow : Window
 {
+    string rawImgPath = "";
     public MainWindow()
     {
         InitializeComponent();
@@ -38,9 +40,33 @@ public partial class MainWindow : Window
         };
         if(fileDialog.ShowDialog() == true)
         {
-            rawImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
-            ContoursMaker.MakeContours(fileDialog.FileName);
+            rawImgPath = fileDialog.FileName;
+            rawImage.Source = new BitmapImage(new Uri(rawImgPath)); 
         }
 
+    }
+
+    private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        if(rawImgPath != string.Empty)
+            rawImage.Source = ConvertBitmapToImageSource(ContoursMaker.ErodeImg(rawImgPath, (int)KernelSlider.Value));
+    }
+
+    public ImageSource ConvertBitmapToImageSource(Bitmap bitmap)
+    {
+        using (MemoryStream memory = new MemoryStream())
+        {
+            bitmap.Save(memory, ImageFormat.Png); // можно JPEG, BMP и т.д.
+            memory.Position = 0;
+
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+            bitmapImage.StreamSource = memory;
+            bitmapImage.EndInit();
+            bitmapImage.Freeze(); // чтобы использовать в разных потоках
+
+            return bitmapImage;
+        }
     }
 }

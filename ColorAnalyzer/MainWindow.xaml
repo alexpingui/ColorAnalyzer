@@ -5,13 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorAnalyzer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="700" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <TabControl>
-            <TabItem Header="Загрузить">
-                <Grid Background="#FFE5E5E5">
-                    <Button Content="Загрузить" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="23" Width="158" Click="UploadImage_Click"/>
-                    <Image x:Name="rawImage" Stretch="Uniform" HorizontalAlignment="Center" Height="500" Margin="0,0,0,0" VerticalAlignment="Center" Width="800"/>
+            <TabItem Header="Загрузить" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid Background="AliceBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0,1*"></RowDefinition>
+                        <RowDefinition Height="0,5*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Slider Grid.Row="2" x:Name="KernelSlider" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom" Width="259" Height="34" Minimum="1" Maximum="10"
+                            TickFrequency="1" SmallChange="1" TickPlacement="Both" Background="Gray" ValueChanged="Slider_ValueChanged"/>
+                    <Button Grid.Row="0" Content="Загрузить" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="23" Width="158" Click="UploadImage_Click"/>
+                    <Image Grid.Row="1"  x:Name="rawImage" Stretch="Uniform" HorizontalAlignment="Center" Height="400" Margin="0,0,0,0" VerticalAlignment="Center" Width="300"/>
+                    
+                    
                 </Grid>
             </TabItem>
             <TabItem Header="Разметка">

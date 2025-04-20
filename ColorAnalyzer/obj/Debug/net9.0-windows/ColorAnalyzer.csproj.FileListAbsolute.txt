@@ -56,3 +56,4 @@ C:\Users\Asus\OneDrive\Рабочий стол\ALEXEY\KASU\C#\Проектики
 C:\Users\Asus\OneDrive\Рабочий стол\ALEXEY\KASU\C#\Проектики\ColorAnalyzer\ColorAnalyzer\bin\Debug\net9.0-windows\runtimes\win-x86\native\msvcp140_codecvt_ids.dll
 C:\Users\Asus\OneDrive\Рабочий стол\ALEXEY\KASU\C#\Проектики\ColorAnalyzer\ColorAnalyzer\bin\Debug\net9.0-windows\runtimes\win-x86\native\vcruntime140.dll
 C:\Users\Asus\OneDrive\Рабочий стол\ALEXEY\KASU\C#\Проектики\ColorAnalyzer\ColorAnalyzer\bin\Debug\net9.0-windows\runtimes\win\lib\net9.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\Asus\OneDrive\Рабочий стол\ALEXEY\KASU\C#\Проектики\ColorAnalyzer\ColorAnalyzer\obj\Debug\net9.0-windows\ColorAnalyzer.sourcelink.json
