@@ -26,10 +26,17 @@ namespace ColorAnalyzer;
 public partial class MainWindow : Window
 {
     string rawImgPath = "";
+    Image<Rgb, byte>? image = null;
+
+    delegate void ChangeImage(ref Image<Rgb, byte> image);
+    ChangeImage changeImage;
     public MainWindow()
     {
         InitializeComponent();
     }
+
+    //delegate void ChangeImage(ref Image<Rgb, byte>)
+
 
     private void UploadImage_Click(object sender, RoutedEventArgs e)
     {
@@ -41,22 +48,28 @@ public partial class MainWindow : Window
         if(fileDialog.ShowDialog() == true)
         {
             rawImgPath = fileDialog.FileName;
-            rawImage.Source = new BitmapImage(new Uri(rawImgPath)); 
+            image = new Image<Rgb, byte>(rawImgPath);
+            rawImage.Source = ConvertGenericImageToImageSource(image); 
         }
-
     }
 
     private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        if(rawImgPath != string.Empty)
-            rawImage.Source = ConvertBitmapToImageSource(ContoursMaker.ErodeImg(rawImgPath, (int)KernelSlider.Value));
+        if (image != null)
+        {
+            ImageProcessor.KernelSize = (int)KernelSlider.Value;
+            changeImage(ref image);
+            rawImage.Source = ConvertGenericImageToImageSource(image);
+        }
     }
 
-    public ImageSource ConvertBitmapToImageSource(Bitmap bitmap)
+    public ImageSource ConvertGenericImageToImageSource(Image<Rgb, byte> image)
     {
+        Bitmap bmpImage = image.ToBitmap();
+
         using (MemoryStream memory = new MemoryStream())
         {
-            bitmap.Save(memory, ImageFormat.Png); // можно JPEG, BMP и т.д.
+            bmpImage.Save(memory, ImageFormat.Png); 
             memory.Position = 0;
 
             BitmapImage bitmapImage = new BitmapImage();
@@ -64,9 +77,25 @@ public partial class MainWindow : Window
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.StreamSource = memory;
             bitmapImage.EndInit();
-            bitmapImage.Freeze(); // чтобы использовать в разных потоках
+            bitmapImage.Freeze(); 
 
             return bitmapImage;
         }
+    }
+
+    private void ErodeImg_Checked(object sender, RoutedEventArgs e)
+    {
+        changeImage = ImageProcessor.ErodeImg;
+    }
+
+    private void DilateImg_Checked(object sender, RoutedEventArgs e)
+    {
+        changeImage = ImageProcessor.DelateImg;
+    }
+
+    private void ResetImageBtn_Click(object sender, RoutedEventArgs e)
+    {
+        image = new Image<Rgb, byte>(rawImgPath);
+        rawImage.Source = ConvertGenericImageToImageSource(image);
     }
 }
